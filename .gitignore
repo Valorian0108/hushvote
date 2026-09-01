@@ -37,6 +37,10 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# smart-contracts env files
+smart-contracts/.env
+smart-contracts/.env.local
+
 # vercel
 .vercel
 

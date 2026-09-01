@@ -1,5 +1,7 @@
 "use client";
 
+import { WalletConnect } from '@/components/WalletConnect'
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -10,9 +12,12 @@ export default function Home() {
           <li><a href="/proposal/1" className="text-stone-600 hover:text-stone-900">Proposals</a></li>
           <li><a href="/admin" className="text-stone-600 hover:text-stone-900">Admin</a></li>
         </ul>
-        <a className="px-4 py-2 bg-stone-900 text-white rounded-full text-sm font-medium hover:opacity-90" href="/proposal/1/vote">
-          Vote →
-        </a>
+        <div className="flex items-center gap-2">
+          <WalletConnect />
+          <a className="px-4 py-2 bg-stone-900 text-white rounded-full text-sm font-medium hover:opacity-90" href="/proposal/1/vote">
+            Vote →
+          </a>
+        </div>
       </nav>
 
       {/* Hero Section */}
@@ -26,9 +31,7 @@ export default function Home() {
             Vote privately using encrypted reputation. Zama FHEVM processes the rules and tally over encrypted data, revealing only the final outcome.
           </p>
           <div className="flex gap-4 items-center">
-            <a className="px-6 py-3 bg-orange-500 text-white rounded-full font-medium hover:opacity-90" href="/proposal/1/vote">
-              Connect Wallet
-            </a>
+            <WalletConnect />
             <a className="px-6 py-3 border border-stone-300 text-stone-900 rounded-full font-medium hover:bg-stone-100" href="/admin">
               Create Proposal
             </a>
