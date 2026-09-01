@@ -1,0 +1,14 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_NETWORK_ID": "11155111",
+    "NEXT_PUBLIC_CHAIN_NAME": "sepolia",
+    "NEXT_PUBLIC_REPUTATION_CONTRACT": "0x24F7E61A1d59Bf7f18CC865E6156439212c3cB09",
+    "NEXT_PUBLIC_ROLE_MANAGER_CONTRACT": "0xf49b6F52DFE1fa80E4502Afcdca3D093EF4a0b05",
+    "NEXT_PUBLIC_GOVERNANCE_CONTRACT": "0x218839Fec7239f1881c54174E84ACb8D966a9b0D"
+  }
+}
