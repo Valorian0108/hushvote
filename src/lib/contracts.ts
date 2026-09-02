@@ -30,6 +30,7 @@ const governanceABI = [
   'function getProposal(uint256 _proposalId) external view returns (uint256, string, string, address, uint256, uint256, uint256, uint256, uint256, bool, bool)',
   'function hasUserVoted(uint256 _proposalId, address _voter) external view returns (bool)',
   'function isVoterEligible(uint256 _proposalId, address _voter) external view returns (bool)',
+  'function proposalCount() external view returns (uint256)',
   'event ProposalCreated(uint256 indexed proposalId, string title, address proposer)',
   'event VoteCast(uint256 indexed proposalId, address voter, bool vote)',
   'event ProposalExecuted(uint256 indexed proposalId, bool passed)',

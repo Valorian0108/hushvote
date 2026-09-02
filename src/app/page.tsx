@@ -9,7 +9,7 @@ export default function Home() {
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-4 px-4 py-2 bg-white/80 backdrop-blur-lg border border-stone-200 rounded-full shadow-lg">
         <a className="font-bold text-stone-900" href="/">HushVote</a>
         <ul className="hidden sm:flex gap-4 text-sm">
-          <li><a href="/proposal/1" className="text-stone-600 hover:text-stone-900">Proposals</a></li>
+          <li><a href="/proposals" className="text-stone-600 hover:text-stone-900">Proposals</a></li>
           <li><a href="/admin" className="text-stone-600 hover:text-stone-900">Admin</a></li>
         </ul>
         <div className="flex items-center gap-2">
