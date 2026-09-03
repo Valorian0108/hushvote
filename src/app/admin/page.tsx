@@ -55,9 +55,15 @@ export default function AdminPage() {
       setSuccess('Proposal submitted! Waiting for blockchain confirmation...')
       setTitle('')
       setDescription('')
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error creating proposal:', err)
-      setError('Failed to create proposal. Please try again.')
+      if (err.message?.includes('user rejected')) {
+        setError('Transaction was rejected in your wallet.')
+      } else if (err.message?.includes('insufficient funds')) {
+        setError('Insufficient funds for gas. Please add test ETH to your wallet.')
+      } else {
+        setError(`Failed to create proposal: ${err.message || 'Unknown error'}`)
+      }
     } finally {
       setIsCreating(false)
     }
@@ -90,9 +96,15 @@ export default function AdminPage() {
       setSuccess('Reputation grant submitted! Waiting for blockchain confirmation...')
       setUserAddress('')
       setReputationScore('')
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error granting reputation:', err)
-      setError('Failed to grant reputation. Please try again.')
+      if (err.message?.includes('user rejected')) {
+        setError('Transaction was rejected in your wallet.')
+      } else if (err.message?.includes('insufficient funds')) {
+        setError('Insufficient funds for gas. Please add test ETH to your wallet.')
+      } else {
+        setError(`Failed to grant reputation: ${err.message || 'Unknown error'}`)
+      }
     } finally {
       setIsGranting(false)
     }
@@ -125,9 +137,15 @@ export default function AdminPage() {
       setSuccess('Voter addition submitted! Waiting for blockchain confirmation...')
       setVoterAddress('')
       setProposalId('')
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error adding voter:', err)
-      setError('Failed to add voter. Please try again.')
+      if (err.message?.includes('user rejected')) {
+        setError('Transaction was rejected in your wallet.')
+      } else if (err.message?.includes('insufficient funds')) {
+        setError('Insufficient funds for gas. Please add test ETH to your wallet.')
+      } else {
+        setError(`Failed to add voter: ${err.message || 'Unknown error'}`)
+      }
     } finally {
       setIsAddingVoter(false)
     }
