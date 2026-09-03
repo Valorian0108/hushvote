@@ -9,11 +9,15 @@ export function WalletConnect() {
   const { disconnect } = useDisconnect()
   const [error, setError] = useState<string | null>(null)
 
-  const handleConnect = async (connector: any) => {
+  const handleConnect = async () => {
     try {
       setError(null)
-      console.log('Connecting to wallet:', connector.name)
-      await connect({ connector })
+      // Connect to the first available connector (usually injected/MetaMask)
+      const connector = connectors[0]
+      if (connector) {
+        console.log('Connecting to wallet:', connector.name)
+        await connect({ connector })
+      }
     } catch (err) {
       console.error('Connection error:', err)
       setError('Failed to connect wallet. Please try again.')
@@ -49,18 +53,13 @@ export function WalletConnect() {
           {error}
         </div>
       )}
-      <div className="flex gap-2">
-        {connectors.map((connector) => (
-          <button
-            key={connector.id}
-            onClick={() => handleConnect(connector)}
-            disabled={isPending}
-            className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isPending ? 'Connecting...' : `Connect ${connector.name}`}
-          </button>
-        ))}
-      </div>
+      <button
+        onClick={handleConnect}
+        disabled={isPending}
+        className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {isPending ? 'Connecting...' : 'Connect Wallet'}
+      </button>
     </div>
   )
 }

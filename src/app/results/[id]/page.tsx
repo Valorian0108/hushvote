@@ -52,7 +52,10 @@ export default function ResultsPage() {
     <main className="min-h-screen bg-stone-50 text-stone-900 px-4 sm:px-16 py-16">
       <div className="max-w-3xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <a href="/" className="text-orange-500 hover:opacity-80">← Back to Home</a>
+          <div className="flex items-center gap-4">
+            <a href="/" className="text-orange-500 hover:opacity-80">← Back to Home</a>
+            <a href="/proposals" className="text-stone-600 hover:text-stone-900">Proposals</a>
+          </div>
           <WalletConnect />
         </div>
         
@@ -78,7 +81,7 @@ export default function ResultsPage() {
         </div>
         
         <div className="bg-orange-50 border border-orange-100 rounded-xl p-6 mb-8">
-          <h2 className="text-lg font-bold text-stone-900 mb-2">🔒 Confidential Voting Results</h2>
+          <h2 className="text-lg font-bold text-stone-900 mb-2">Confidential Voting Results</h2>
           <p className="text-stone-600 text-sm">
             Individual votes remain encrypted. Only the final outcome is revealed publicly.
           </p>

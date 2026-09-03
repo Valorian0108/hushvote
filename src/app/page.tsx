@@ -6,13 +6,15 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
       {/* Floating Pill Nav */}
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-4 px-4 py-2 bg-white/80 backdrop-blur-lg border border-stone-200 rounded-full shadow-lg">
-        <a className="font-bold text-stone-900" href="/">HushVote</a>
-        <ul className="hidden sm:flex gap-4 text-sm">
-          <li><a href="/proposals" className="text-stone-600 hover:text-stone-900">Proposals</a></li>
-          <li><a href="/admin" className="text-stone-600 hover:text-stone-900">Admin</a></li>
-        </ul>
-        <div className="flex items-center gap-2">
+      <nav className="fixed top-4 left-4 right-4 z-20 flex items-center justify-between px-6 py-3 bg-white/80 backdrop-blur-lg border border-stone-200 rounded-full shadow-lg">
+        <div className="flex items-center gap-6">
+          <a className="font-bold text-stone-900" href="/">HushVote</a>
+          <ul className="hidden sm:flex gap-4 text-sm">
+            <li><a href="/proposals" className="text-stone-600 hover:text-stone-900">Proposals</a></li>
+            <li><a href="/admin" className="text-stone-600 hover:text-stone-900">Admin</a></li>
+          </ul>
+        </div>
+        <div className="flex items-center gap-3">
           <WalletConnect />
           <a className="px-4 py-2 bg-stone-900 text-white rounded-full text-sm font-medium hover:opacity-90" href="/proposal/1/vote">
             Vote →
@@ -22,15 +24,15 @@ export default function Home() {
 
       {/* Hero Section */}
       <header className="min-h-[60vh] flex items-center px-4 sm:px-16 py-16">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto animate-fade-in-up">
           <h1 className="text-4xl sm:text-6xl font-bold text-stone-900 mb-4">
             Confidential governance.<br/>
             <span className="text-orange-500">Verifiable outcomes.</span>
           </h1>
-          <p className="text-lg text-stone-600 max-w-xl mb-8">
+          <p className="text-lg text-stone-600 max-w-xl mb-8 animate-fade-in-up animate-delay-100">
             Vote privately using encrypted reputation. Zama FHEVM processes the rules and tally over encrypted data, revealing only the final outcome.
           </p>
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center animate-fade-in-up animate-delay-200">
             <WalletConnect />
             <a className="px-6 py-3 border border-stone-300 text-stone-900 rounded-full font-medium hover:bg-stone-100" href="/admin">
               Create Proposal
@@ -42,7 +44,7 @@ export default function Home() {
       {/* Bento Grid */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 sm:px-16 py-16 max-w-6xl mx-auto">
         {/* Hero Feature */}
-        <article className="col-span-1 sm:col-span-2 bg-orange-50 border border-orange-100 rounded-xl p-6">
+        <article className="col-span-1 sm:col-span-2 bg-orange-50 border border-orange-100 rounded-xl p-6 animate-scale-in animate-delay-100">
           <span className="text-xs font-mono text-orange-500 uppercase tracking-wider">01</span>
           <h2 className="text-xl font-bold text-stone-900 mt-2 mb-2">Zero-Knowledge Voting</h2>
           <p className="text-stone-600 text-sm">
@@ -51,7 +53,7 @@ export default function Home() {
         </article>
 
         {/* Feature 1 */}
-        <article className="bg-white border border-stone-200 rounded-xl p-6">
+        <article className="bg-white border border-stone-200 rounded-xl p-6 animate-scale-in animate-delay-200">
           <span className="text-xs font-mono text-orange-500 uppercase tracking-wider">02</span>
           <h3 className="text-lg font-bold text-stone-900 mt-2 mb-2">Encrypted Rules</h3>
           <p className="text-stone-600 text-sm">
@@ -60,7 +62,7 @@ export default function Home() {
         </article>
 
         {/* Feature 2 */}
-        <article className="bg-white border border-stone-200 rounded-xl p-6">
+        <article className="bg-white border border-stone-200 rounded-xl p-6 animate-scale-in animate-delay-300">
           <span className="text-xs font-mono text-orange-500 uppercase tracking-wider">03</span>
           <h3 className="text-lg font-bold text-stone-900 mt-2 mb-2">Public Results</h3>
           <p className="text-stone-600 text-sm">
@@ -69,13 +71,13 @@ export default function Home() {
         </article>
 
         {/* Stat */}
-        <article className="col-span-1 sm:col-span-2 bg-stone-900 border border-stone-900 rounded-xl p-6 flex flex-col items-center justify-center text-center">
+        <article className="col-span-1 sm:col-span-2 bg-stone-900 border border-stone-900 rounded-xl p-6 flex flex-col items-center justify-center text-center animate-scale-in animate-delay-100">
           <span className="text-4xl font-bold text-white">Sepolia</span>
           <span className="text-sm text-stone-400 mt-1">Ethereum Testnet</span>
         </article>
 
         {/* Feature 3 */}
-        <article className="row-span-2 bg-white border border-stone-200 rounded-xl p-6">
+        <article className="row-span-2 bg-white border border-stone-200 rounded-xl p-6 animate-scale-in animate-delay-200">
           <span className="text-xs font-mono text-orange-500 uppercase tracking-wider">04</span>
           <h3 className="text-lg font-bold text-stone-900 mt-2 mb-2">Role Assignment</h3>
           <p className="text-stone-600 text-sm">
@@ -84,7 +86,7 @@ export default function Home() {
         </article>
 
         {/* Feature 4 */}
-        <article className="bg-white border border-stone-200 rounded-xl p-6">
+        <article className="bg-white border border-stone-200 rounded-xl p-6 animate-scale-in animate-delay-300">
           <span className="text-xs font-mono text-orange-500 uppercase tracking-wider">05</span>
           <h3 className="text-lg font-bold text-stone-900 mt-2 mb-2">Reputation Weight</h3>
           <p className="text-stone-600 text-sm">
@@ -93,7 +95,7 @@ export default function Home() {
         </article>
 
         {/* Feature 5 */}
-        <article className="bg-white border border-stone-200 rounded-xl p-6">
+        <article className="bg-white border border-stone-200 rounded-xl p-6 animate-scale-in animate-delay-100">
           <span className="text-xs font-mono text-orange-500 uppercase tracking-wider">06</span>
           <h3 className="text-lg font-bold text-stone-900 mt-2 mb-2">DAO Integration</h3>
           <p className="text-stone-600 text-sm">

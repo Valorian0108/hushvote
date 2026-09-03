@@ -51,7 +51,10 @@ export default function VotePage() {
     <main className="min-h-screen bg-stone-50 text-stone-900 px-4 sm:px-16 py-16">
       <div className="max-w-3xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <a href={`/proposal/${params.id}`} className="text-orange-500 hover:opacity-80">← Back to Proposal</a>
+          <div className="flex items-center gap-4">
+            <a href={`/proposal/${params.id}`} className="text-orange-500 hover:opacity-80">← Back to Proposal</a>
+            <a href="/proposals" className="text-stone-600 hover:text-stone-900">Proposals</a>
+          </div>
           <WalletConnect />
         </div>
         
@@ -59,7 +62,7 @@ export default function VotePage() {
         <p className="text-lg text-stone-600 mb-8">Proposal #{id}: {title}</p>
         
         <div className="bg-orange-50 border border-orange-100 rounded-xl p-6 mb-8">
-          <h2 className="text-lg font-bold text-stone-900 mb-2">🔒 Your Eligibility is Checked Privately</h2>
+          <h2 className="text-lg font-bold text-stone-900 mb-2">Your Eligibility is Checked Privately</h2>
           <p className="text-stone-600 text-sm">
             The community's participation rules can be applied without publishing your reputation score
             or voting influence. Your vote will be encrypted before submission.

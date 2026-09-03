@@ -137,7 +137,10 @@ export default function AdminPage() {
       <div className="max-w-3xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <a href="/" className="text-orange-500 hover:opacity-80">← Back to Home</a>
-          <WalletConnect />
+          <div className="flex items-center gap-4">
+            <a href="/proposals" className="text-stone-600 hover:text-stone-900">Proposals</a>
+            <WalletConnect />
+          </div>
         </div>
         
         <h1 className="text-4xl font-bold text-stone-900 mb-4">Admin Dashboard</h1>
