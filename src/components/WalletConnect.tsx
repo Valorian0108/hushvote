@@ -1,13 +1,14 @@
 'use client'
 
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function WalletConnect() {
   const { address, isConnected } = useAccount()
   const { connect, connectors, isPending, error: connectError } = useConnect()
   const { disconnect } = useDisconnect()
   const [error, setError] = useState<string | null>(null)
+  const [retryCount, setRetryCount] = useState(0)
 
   const handleConnect = async () => {
     try {
@@ -17,18 +18,44 @@ export function WalletConnect() {
       if (connector) {
         console.log('Connecting to wallet:', connector.name)
         await connect({ connector })
+      } else {
+        setError('No wallet detected. Please install MetaMask or another Web3 wallet.')
       }
     } catch (err) {
       console.error('Connection error:', err)
-      setError('Failed to connect wallet. Please try again.')
+      if (retryCount < 2) {
+        setError('Connection failed. Retrying...')
+        setRetryCount(prev => prev + 1)
+        setTimeout(() => handleConnect(), 1000)
+      } else {
+        setError('Failed to connect wallet. Please check your wallet extension and try again.')
+        setRetryCount(0)
+      }
     }
   }
 
   // Show connection errors from wagmi
-  if (connectError) {
-    console.error('Wagmi connection error:', connectError)
-    setError(connectError.message)
-  }
+  useEffect(() => {
+    if (connectError) {
+      console.error('Wagmi connection error:', connectError)
+      const errorMessage = connectError.message.toLowerCase()
+      if (errorMessage.includes('user rejected')) {
+        setError('Connection was rejected. Please approve the connection in your wallet.')
+      } else if (errorMessage.includes('chain')) {
+        setError('Network error. Please ensure you are on the correct network.')
+      } else {
+        setError(connectError.message)
+      }
+    }
+  }, [connectError])
+
+  // Clear error when connection succeeds
+  useEffect(() => {
+    if (isConnected) {
+      setError(null)
+      setRetryCount(0)
+    }
+  }, [isConnected])
 
   if (isConnected) {
     return (

@@ -1,13 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { useAccount, useWriteContract } from 'wagmi'
+import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { contractConfig } from '@/lib/contracts'
 import { WalletConnect } from '@/components/WalletConnect'
 
 export default function AdminPage() {
   const { isConnected } = useAccount()
-  const { writeContract } = useWriteContract()
+  const { writeContract, data: hash } = useWriteContract()
+  const { isLoading: isConfirming } = useWaitForTransactionReceipt({ hash })
   
   // Proposal creation state
   const [title, setTitle] = useState('')
@@ -51,7 +52,7 @@ export default function AdminPage() {
         args: [title, description],
       })
       
-      setSuccess('Proposal created successfully!')
+      setSuccess('Proposal submitted! Waiting for blockchain confirmation...')
       setTitle('')
       setDescription('')
     } catch (err) {
@@ -86,7 +87,7 @@ export default function AdminPage() {
         args: [userAddress, parseInt(reputationScore)],
       })
       
-      setSuccess('Reputation granted successfully!')
+      setSuccess('Reputation grant submitted! Waiting for blockchain confirmation...')
       setUserAddress('')
       setReputationScore('')
     } catch (err) {
@@ -121,7 +122,7 @@ export default function AdminPage() {
         args: [parseInt(proposalId), voterAddress],
       })
       
-      setSuccess('Voter added successfully!')
+      setSuccess('Voter addition submitted! Waiting for blockchain confirmation...')
       setVoterAddress('')
       setProposalId('')
     } catch (err) {
@@ -129,6 +130,17 @@ export default function AdminPage() {
       setError('Failed to add voter. Please try again.')
     } finally {
       setIsAddingVoter(false)
+    }
+  }
+
+  // Update success message when transaction is confirmed
+  if (hash && !isConfirming && success) {
+    if (success.includes('Proposal submitted')) {
+      setSuccess('Proposal created successfully! Check the Proposals page.')
+    } else if (success.includes('Reputation grant submitted')) {
+      setSuccess('Reputation granted successfully!')
+    } else if (success.includes('Voter addition submitted')) {
+      setSuccess('Voter added successfully!')
     }
   }
 
@@ -185,10 +197,10 @@ export default function AdminPage() {
             </div>
             <button 
               type="submit"
-              disabled={!isConnected || isCreating}
+              disabled={!isConnected || isCreating || isConfirming}
               className="px-6 py-3 bg-orange-500 text-white rounded-lg font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isCreating ? 'Creating...' : 'Create Proposal'}
+              {isCreating || isConfirming ? 'Processing...' : 'Create Proposal'}
             </button>
           </form>
           {!isConnected && (

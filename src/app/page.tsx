@@ -5,8 +5,8 @@ import { WalletConnect } from '@/components/WalletConnect'
 export default function Home() {
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
-      {/* Floating Pill Nav */}
-      <nav className="fixed top-4 left-4 right-4 z-20 flex items-center justify-between px-6 py-3 bg-white/80 backdrop-blur-lg border border-stone-200 rounded-full shadow-lg">
+      {/* Fixed Nav - No Collision */}
+      <nav className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-4 sm:px-16 py-4 bg-white/80 backdrop-blur-lg border-b border-stone-200">
         <div className="flex items-center gap-6">
           <a className="font-bold text-stone-900" href="/">HushVote</a>
           <ul className="hidden sm:flex gap-4 text-sm">
@@ -23,7 +23,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <header className="min-h-[60vh] flex items-center px-4 sm:px-16 py-16">
+      <header className="min-h-[60vh] flex items-center px-4 sm:px-16 py-24 pt-20">
         <div className="max-w-3xl mx-auto animate-fade-in-up">
           <h1 className="text-4xl sm:text-6xl font-bold text-stone-900 mb-4">
             Confidential governance.<br/>
@@ -33,7 +33,6 @@ export default function Home() {
             Vote privately using encrypted reputation. Zama FHEVM processes the rules and tally over encrypted data, revealing only the final outcome.
           </p>
           <div className="flex gap-4 items-center animate-fade-in-up animate-delay-200">
-            <WalletConnect />
             <a className="px-6 py-3 border border-stone-300 text-stone-900 rounded-full font-medium hover:bg-stone-100" href="/admin">
               Create Proposal
             </a>

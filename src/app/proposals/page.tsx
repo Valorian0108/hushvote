@@ -6,12 +6,17 @@ import { contractConfig } from '@/lib/contracts'
 import { WalletConnect } from '@/components/WalletConnect'
 
 export default function ProposalsPage() {
-  const [proposalCount, setProposalCount] = useState(0)
+  const [refreshKey, setRefreshKey] = useState(0)
   
-  // Get total proposal count
-  const { data: totalProposals, isLoading } = useReadContract({
+  // Get total proposal count with refresh capability
+  const { data: totalProposals, isLoading, refetch } = useReadContract({
     ...contractConfig.governance,
     functionName: 'proposalCount',
+    query: {
+      enabled: true,
+      refetchOnWindowFocus: true,
+      refetchOnMount: true,
+    },
   })
 
   const hasProposals = totalProposals && Number(totalProposals) > 0
@@ -29,10 +34,20 @@ export default function ProposalsPage() {
         </div>
         
         <div className="bg-orange-50 border border-orange-100 rounded-xl p-6 mb-8">
-          <h2 className="text-lg font-bold text-stone-900 mb-2">Confidential Voting</h2>
-          <p className="text-stone-600 text-sm">
-            Your votes remain encrypted throughout the entire process. Only the final outcome is revealed publicly.
-          </p>
+          <div className="flex justify-between items-start">
+            <div>
+              <h2 className="text-lg font-bold text-stone-900 mb-2">Confidential Voting</h2>
+              <p className="text-stone-600 text-sm">
+                Your votes remain encrypted throughout the entire process. Only the final outcome is revealed publicly.
+              </p>
+            </div>
+            <button 
+              onClick={() => refetch()}
+              className="px-4 py-2 bg-white border border-orange-200 text-orange-600 rounded-lg text-sm font-medium hover:bg-orange-50 transition-colors"
+            >
+              Refresh
+            </button>
+          </div>
         </div>
         
         {isLoading ? (

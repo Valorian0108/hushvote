@@ -36,8 +36,13 @@ export default function VotePage() {
       <main className="min-h-screen bg-stone-50 text-stone-900 px-4 sm:px-16 py-16">
         <div className="max-w-3xl mx-auto">
           <a href="/" className="text-orange-500 hover:opacity-80 mb-8 inline-block">← Back to Home</a>
-          <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
-            Failed to load proposal. It may not exist yet.
+          <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg mb-6">
+            <h3 className="font-bold mb-2">Failed to load proposal #{proposalId}</h3>
+            <p className="text-sm mb-4">This proposal may not exist yet or there was an error loading it from the blockchain.</p>
+            <div className="flex gap-4">
+              <a href="/proposals" className="text-sm underline hover:opacity-80">View All Proposals</a>
+              <a href="/admin" className="text-sm underline hover:opacity-80">Create a Proposal</a>
+            </div>
           </div>
         </div>
       </main>
